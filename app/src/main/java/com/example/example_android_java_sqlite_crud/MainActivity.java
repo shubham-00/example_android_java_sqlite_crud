@@ -38,12 +38,12 @@ public class MainActivity extends AppCompatActivity {
                 String emailText = email.getText().toString();
                 String showText = show.getText().toString();
 
-                boolean insretData = db.addData(nameText, emailText, showText);
+                boolean insertData = db.addData(nameText, emailText, showText);
 
-                if (insretData) {
+                if (insertData) {
                     Toast.makeText(MainActivity.this, "Data inserted", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(MainActivity.this, "Something went wrong!", Toast.LENGTH_SHORT);
+                    Toast.makeText(MainActivity.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
