@@ -1,0 +1,2 @@
+rootProject.name = "example_android_java_sqlite_crud"
+include ':app'
