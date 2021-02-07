@@ -2,6 +2,7 @@ package com.example.example_android_java_sqlite_crud;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -53,5 +54,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         } else {
             return true;
         }
+    }
+
+    public Cursor viewData() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor data = db.rawQuery("SELECT * from " + TABLE_NAME, null);
+
+        return data;
+    }
+
+    public boolean updateData(String id, String name, String email, String show) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(ID, id);
+        contentValues.put(NAME, name);
+        contentValues.put(EMAIL, email);
+        contentValues.put(SHOW, show);
+
+        db.update(TABLE_NAME,contentValues, ID + " = ?", new String[] {id});
+
+        return true;
+    }
+
+    public int deleteData(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        return db.delete(TABLE_NAME, ID + " = ?", new String[] {id});
     }
 }
